@@ -1,0 +1,23 @@
+<h1>Listing feed_urls</h1>
+
+<table>
+  <tr>
+    <th>Url name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @feed_urls.each do |feed_url| %>
+  <tr>
+    <td><%= feed_url.url_name %></td>
+    <td><%= link_to 'Show', feed_url %></td>
+    <td><%= link_to 'Edit', edit_feed_url_path(feed_url) %></td>
+    <td><%= link_to 'Destroy', feed_url, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Feed url', new_feed_url_path %>
