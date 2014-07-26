@@ -1,0 +1,20 @@
+<h1>List All Feeds</h1>
+<% @feed_urls.each do |feed_url| %>
+  <%feed = Feedjira::Feed.fetch_and_parse(feed_url.url_name)%>
+  <% unless feed.kind_of?(Fixnum) %>
+    <h2> Title : <%=!feed.title.blank? ? feed.title : 'NA' %>   </h2>
+    <h2> URL : <%=!feed.url.blank? ? (link_to feed.url, feed.url, :target=>"_blank") : 'NA' %>   </h2>
+    <%@entry = feed.entries if !feed.kind_of?(Fixnum)%>
+    <% unless @entry.blank? %>
+      <%@entry.each do |item|%>
+        <h2 ><%= link_to "#{item.title.sanitize}", "#{item.url}",:target => "_blank" %> </h2>
+        <h3> Author : <%= !item.author.blank? ? item.author : 'NA' %>   </h3>
+        <h3> Published At: <%=  !item.published.blank? ? item.published.strftime("%d-%b-%Y") : 'NA' %> </h3>
+        <h3> Categories: <%=  !item.categories.blank? ? item.categories.join(",").to_s : 'NA'  %></h3>
+      <%end%>
+    <%end%>
+  <% end %>
+<%end%>
+
+<%= link_to 'New Feed URL', new_feed_url_path %>
+<%= link_to 'RSS Reader', rss_reader_feeds_path %>

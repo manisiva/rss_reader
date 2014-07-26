@@ -1,23 +1,24 @@
-<h1>Listing feed_urls</h1>
+<h1>Listing Feed URL</h1>
 
-<table>
+<table border="1">
   <tr>
-    <th>Url name</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>URL Name</th>
+    <th>Title</th>
+    <th colspan="3"> Action</th>
   </tr>
-
-<% @feed_urls.each do |feed_url| %>
-  <tr>
-    <td><%= feed_url.url_name %></td>
-    <td><%= link_to 'Show', feed_url %></td>
-    <td><%= link_to 'Edit', edit_feed_url_path(feed_url) %></td>
-    <td><%= link_to 'Destroy', feed_url, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+  <% @feed_urls.each do |feed_url| %>
+    <tr>
+      <td><%= feed_url.url_name %></td>
+      <% rss_feed = Feedjira::Feed.fetch_and_parse(feed_url.url_name)%>
+      <td> <%= !rss_feed.kind_of?(Fixnum) && !rss_feed.title.blank?  ? rss_feed.title : 'NA' %> </td>
+      <td><%= link_to 'Edit', edit_feed_url_path(feed_url) %></td>
+      <td><%= link_to 'Destroy', feed_url, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Feed url', new_feed_url_path %>
+<%= link_to 'New Feed URL', new_feed_url_path %>
+<%= link_to 'List All Feeds', fetch_feeds_feeds_path %>
+<%= link_to 'RSS Reader', rss_reader_feeds_path %>

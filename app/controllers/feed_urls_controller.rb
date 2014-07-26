@@ -1,3 +1,4 @@
+require 'feedjira'
 class FeedUrlsController < ApplicationController
   # GET /feed_urls
   # GET /feed_urls.json

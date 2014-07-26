@@ -1,0 +1,7 @@
+<h1>RSS Reader Listing</h1>
+<% @feeds.each do |k,v| %>
+  <h3>  <%= link_to  v[:title], v[:url], :target=>"_blank" %></h3>
+<% end %>
+
+<%= link_to 'New Feed URL', new_feed_url_path %>
+<%= link_to 'List All Feeds', fetch_feeds_feeds_path %>
