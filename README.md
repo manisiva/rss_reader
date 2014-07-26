@@ -11,7 +11,10 @@ It consists of the following menus
 I used the  following urls to create feeds:
 
 http://feeds.feedburner.com/TechCrunch/gaming
+
 http://slashdot.org/index.rdf
+
 http://www.aweber.com/blog/feed/
+
 http://feeds.feedburner.com/TechCrunch/social 
 
