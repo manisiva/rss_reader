@@ -1,6 +1,7 @@
 class FeedUrl < ActiveRecord::Base
   attr_accessible :url_name
 
+  #This method will parse the URL's and get all the feeds as hash from the URL's
   def self.rss_reader_hooks
     feed_urls = self.all
     feed_hash={}
